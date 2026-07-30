@@ -45,7 +45,6 @@ function ToastPlayground() {
               <label htmlFor={`variant-${option}`} key={option}>
               <input
                 id={`variant-${option}`}
-                key={option}
                 type="radio"
                 name="variant"
                 value={option}
