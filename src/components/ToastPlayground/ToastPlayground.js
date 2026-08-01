@@ -12,7 +12,6 @@ function ToastPlayground() {
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
 
   const [toasts, setToasts] = React.useState([]);
-  const [isShown, setIsShown] = React.useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -31,8 +30,6 @@ function ToastPlayground() {
     // reset !
     setMessage('')
     setVariant(VARIANT_OPTIONS[0])
-
-    setIsShown(true)
   }
 
   function handleDismiss(id) {
@@ -49,7 +46,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
       
-      {isShown && <ToastShelf toasts={toasts} handleDismiss={handleDismiss}/>}
+      <ToastShelf toasts={toasts} handleDismiss={handleDismiss}/>
 
       <form onSubmit={handleSubmit}>
       <div className={styles.controlsWrapper}>
