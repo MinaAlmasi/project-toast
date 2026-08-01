@@ -48,8 +48,7 @@ function ToastPlayground() {
       
       <ToastShelf toasts={toasts} handleDismiss={handleDismiss}/>
 
-      <form onSubmit={handleSubmit}>
-      <div className={styles.controlsWrapper}>
+      <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -98,7 +97,6 @@ function ToastPlayground() {
             </Button>
           </div>
         </div>
-      </div>
     </form>
     </div>
   );
