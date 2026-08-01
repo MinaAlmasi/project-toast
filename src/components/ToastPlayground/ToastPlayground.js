@@ -10,19 +10,29 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
+
+  const [messages, setMessages] = React.useState([]);
   const [isShown, setIsShown] = React.useState(false);
 
-  // placeholder to just get toastshelf working
-  const messages = [{
-    message: "Hello",
-    variant: "warning",
-  },
-  {
-    message: "NO WAY!",
-    variant: "success"
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const newMessage = {
+      message: message,
+      variant: variant
+      // add id later for key warnings
+    }
+
+    const nextMessages = [...messages, newMessage]
+    setMessages(nextMessages)
+
+    // reset !
+    setMessage('')
+    setVariant(VARIANT_OPTIONS[0])
+
+    setIsShown(true)
   }
-  ]
- 
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -32,6 +42,7 @@ function ToastPlayground() {
       
       {isShown && <ToastShelf messages={messages}/>}
 
+      <form onSubmit={handleSubmit}>
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -76,12 +87,13 @@ function ToastPlayground() {
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <Button onClick={() => setIsShown(true)}>
+            <Button>
               Pop Toast!
             </Button>
           </div>
         </div>
       </div>
+    </form>
     </div>
   );
 }
