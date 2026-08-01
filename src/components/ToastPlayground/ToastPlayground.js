@@ -19,9 +19,9 @@ function ToastPlayground() {
 
     // define new toast
     const newToast = {
+      id: crypto.randomUUID(),
       message: message,
       variant: variant,
-      id: crypto.randomUUID(),
     }
     
     // add to toasts
@@ -35,6 +35,13 @@ function ToastPlayground() {
     setIsShown(true)
   }
 
+  function handleDismiss(id) {
+    const nextToasts = toasts.filter((toast) => {
+      return toast.id !== id;
+  });
+    setToasts(nextToasts);
+  }
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -42,7 +49,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
       
-      {isShown && <ToastShelf toasts={toasts}/>}
+      {isShown && <ToastShelf toasts={toasts} handleDismiss={handleDismiss}/>}
 
       <form onSubmit={handleSubmit}>
       <div className={styles.controlsWrapper}>
